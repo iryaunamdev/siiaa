@@ -18,6 +18,7 @@
         <script src="{{ mix('js/custom.js') }}" defer></script>
     </head>
     <body>
+        <livewire:toasts />
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
