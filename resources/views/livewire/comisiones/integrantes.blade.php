@@ -37,7 +37,6 @@
                                     <button wire:click.prevent="store()" type="button"
                                     class="rounded-l inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase hover:bg-sky-700 focus:bg-sky-700 focus:outline-none focus:ring-0 active:bg-sky-800 transition duration-150 ease-in-out mr-1">Guardar</button>
                                 </span>
-
                             </div>
                         </div>
                     </form>
