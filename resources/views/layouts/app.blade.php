@@ -30,7 +30,7 @@
         <div class=" flex items-left justify-left bg-slate-100">
             @include('side-menu')
 
-            <div class="ml-auto mb-6 sm:w-full lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+            <div class="ml-auto mb-6 sm:w-full lg:w-[70%] xl:w-[75%] 2xl:w-[80%]">
 
                 <!-- Page Content -->
                 <main>

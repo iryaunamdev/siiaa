@@ -1,4 +1,4 @@
-<aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 sm:hidden md:block md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+<aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 sm:hidden md:block md:w-4/12 lg:ml-0 lg:w-[30%] xl:w-[25%] 2xl:w-[20%] text-sm">
     <div>
         <div class="-mx-6 px-6 py-4">
             {{--
@@ -16,13 +16,14 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
+                <a href="{{route('comisiones')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
                     <i class="fa-duotone fa-arrows-down-to-people fa-lg text-gray-600 hover:text-cyan-600"></i>
                     <span class="group-hover:text-gray-700">comisiones</span>
                 </a>
             </li>
         </ul>
 
+        @hasanyrole('Superadmin|Administrador')
         <ul class="space-y-2 tracking-wider mt-8 pt-4 border-t">
             <li>
                 <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
@@ -37,5 +38,6 @@
                 </a>
             </li>
         </ul>
+        @endhasanyrole
     </div>
 </aside>
