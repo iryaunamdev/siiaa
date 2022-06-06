@@ -18,14 +18,14 @@
                             <div class="form-floating">
                                 <input type="text"
                                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none"
-                                    id="floatingInput1" placeholder="Integrante" wire:model="nombre">
-                                <label for="floatingInput1" class="text-gray-700">Integrante</label>
+                                    id="floatingInput1" placeholder="Nombre del integrante" wire:model="nombre">
+                                <label for="floatingInput1" class="text-gray-700">Nombre del integrante</label>
                             </div>
                             <div class="form-floating">
                                 <input type="text"
                                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none"
-                                    id="floatingInput2" placeholder="Puesto" wire:model="puesto">
-                                <label for="floatingInput2" class="text-gray-700">Puesto</label>
+                                    id="floatingInput2" placeholder="(Puesto/Adscripcion)" wire:model="puesto">
+                                <label for="floatingInput2" class="text-gray-700">(Puesto/Adscripcion)</label>
                             </div>
 
                             <div class="bg-gray-50 py-3 sm:flex sm:flex-row-reverse">

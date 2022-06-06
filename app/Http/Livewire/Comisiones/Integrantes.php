@@ -74,6 +74,13 @@ class Integrantes extends Component
 
     public function editarIntegrante($IntegranteID)
     {
+        if($IntegranteID){
+            $integrante = ComisionIntegrante::findOrFail($IntegranteID);
+            $this->nombre = $integrante->nombre;
+            $this->puesto = $integrante->puesto;
+            $this->integrante_id = $integrante->id;
+        }
+
         $this->editMode = true;
     }
 }
