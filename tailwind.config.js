@@ -7,6 +7,8 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js',
+        './vendor/usernotnull/tall-toasts/config/**/*.php',
+        './vendor/usernotnull/tall-toasts/resources/views/**/*.blade.php',
     ],
 
     theme: {
