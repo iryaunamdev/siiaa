@@ -49,13 +49,18 @@
 
 <table class="table-fixed w-full">
     <tbody>
-        @foreach ($integrantes as $integrante)
+        @foreach ($integrantes as $index => $integrante)
             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-sky-100">
-                <td class="px-6 py-4 whitespace-nowrap text-gray-900">
+                <td class="px-6 py-4 whitespace-nowrap text-gray-900 text-light w-6">{{ $index + 1 }}</td>                <td class="px-6 py-4 whitespace-nowrap text-gray-900">
                     <button wire:click.prevent="$emit('editarIntegrante', {{ $integrante->id }})">
                         <span class="font-bold">{{ $integrante->nombre }}</span><br>
                         <span class="font-light">{{ $integrante->puesto }}</span>
                     </button>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-gray-900 w-20 text-center">
+                    @hasanyrole('Superadmin|Administrador')
+                    <button type="button" wire:click.prevent="delete({{ $integrante->id }})"><i class="fa-light fa-trash-can fa-lg text-red-700 hover:text-red-800"></i></button>
+                    @endhasanyrole
                 </td>
         @endforeach
     </tbody>

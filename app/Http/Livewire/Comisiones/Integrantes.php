@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Comisiones;
 
 use App\Models\ComisionIntegrante;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Integrantes extends Component
@@ -20,7 +21,10 @@ class Integrantes extends Component
 
     public $editMode = 0;
 
-
+    public $autorizedRoles = [
+        'Superadmin',
+        'Administrador',
+    ];
 
     public function render()
     {
@@ -33,24 +37,39 @@ class Integrantes extends Component
 
     public function store()
     {
-        $this->validate();
+        if(Auth::user()->hasanyrole($this->autorizedRoles))
+        {
+            $this->validate();
 
-        $integrante = ComisionIntegrante::updateOrCreate(['id'=>$this->integrante_id],[
-            'nombre'=>$this->nombre,
-            'puesto'=>$this->puesto,
-            'comision_id'=>$this->comision_id,
-        ]);
+            $integrante = ComisionIntegrante::updateOrCreate(['id'=>$this->integrante_id],[
+                'nombre'=>$this->nombre,
+                'puesto'=>$this->puesto,
+                'comision_id'=>$this->comision_id,
+            ]);
 
-        $this->resetInputFields();
-        $this->dispatchBrowserEvent('integrateAdded');
-        $this->editMode = false;
+            $this->resetInputFields();
+            $this->editMode = false;
+
+        }else{
+            return abort(403, 'Usuario no autorizado.');
+        }
+
+    }
+
+    public function delete($id)
+    {
+        if(Auth::user()->hasanyrole($this->autorizedRoles))
+        {
+            $integrante = ComisionIntegrante::find($id)->delete();
+        }else{
+            return abort(403, 'Usuario no autorizado.');
+        }
     }
 
     public function resetInputFields()
     {
         $this->nombre = '';
         $this->puesto = '';
-        $this->integrante_id = '';
     }
 
     public function editarIntegrante($IntegranteID)
