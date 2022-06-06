@@ -1,3 +1,66 @@
+.side-link-1 {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center
+}
+
+.side-link-1 > :not([hidden]) ~ :not([hidden]) {
+
+    --tw-space-x-reverse: 0;
+
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)))
+}
+
+.side-link-1 {
+
+    border-radius: 0.75rem;
+
+    padding-left: 1rem;
+
+    padding-right: 1rem;
+
+    padding-top: 0.75rem;
+
+    padding-bottom: 0.75rem
+}
+
+.side-link-1-active {
+
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+
+    --tw-gradient-from: #0284c7;
+
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(2 132 199 / 0));
+
+    --tw-gradient-to: #22d3ee;
+
+    --tw-text-opacity: 1;
+
+    color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+.side-link-1-off {
+
+    --tw-gradient-from: #fff;
+
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 255 255 / 0));
+
+    --tw-gradient-to: #e2e8f0;
+
+    --tw-text-opacity: 1;
+
+    color: rgb(75 85 99 / var(--tw-text-opacity))
+}
+
+.side-link-1-off:hover {
+
+    background-image: linear-gradient(to right, var(--tw-gradient-stops))
+}
 
 /*
 ! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
@@ -5055,10 +5118,6 @@ textarea.form-control.is-invalid {
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-.text-red-800 {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 .text-red-700 {
   --tw-text-opacity: 1;

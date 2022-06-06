@@ -10,14 +10,14 @@
 
         <ul class="space-y-2 tracking-wide mt-8 pt-8">
             <li>
-                <a href="#" aria-label="dashboard" class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400">
-                    <i class="fa-duotone fa-grid-2 fa-lg"></i>
+                <a href="{{route('dashboard')}}" aria-label="dashboard" class="side-link-1 {{ (request()->is('dashboard')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-grid-2 fa-lg text-cyan-600"></i>
                     <span class="-mr-1 font-medium">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('comisiones')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
-                    <i class="fa-duotone fa-arrows-down-to-people fa-lg text-gray-600 hover:text-cyan-600"></i>
+                <a href="{{route('comisiones')}}" class="side-link-1 {{ (request()->is('comisiones*')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-arrows-down-to-people fa-lg text-cyan-600"></i>
                     <span class="group-hover:text-gray-700">comisiones</span>
                 </a>
             </li>
@@ -26,14 +26,14 @@
         @hasanyrole('Superadmin|Administrador')
         <ul class="space-y-2 tracking-wider mt-8 pt-4 border-t">
             <li>
-                <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
-                    <i class="fa-duotone fa-user-gear fa-lg text-gray-600 hover:text-cyan-600"></i>
+                <a href="{{route('usuarios')}}" class="side-link-1 {{ (request()->is('siiaa/configuraciones/usuarios')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-user-gear fa-lg text-cyan-600"></i>
                     <span class="group-hover:text-gray-700">Usuarios y permisos</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group hover:bg-gradient-to-r from-white to-slate-200">
-                    <i class="fa-duotone fa-gear fa-lg text-gray-600 hover:text-cyan-600"></i>
+                <a href="{{route('configuraciones')}}" class="side-link-1 {{ (request()->is('siiaa/configuraciones')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-gear fa-lg text-cyan-600"></i>
                     <span class="group-hover:text-gray-700">Configuraciones</span>
                 </a>
             </li>

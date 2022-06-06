@@ -2,7 +2,9 @@
 
 use App\Http\Livewire\Comisiones\Create;
 use App\Http\Livewire\Comisiones\Crud;
-use App\Http\Livewire\Comisiones\Index;
+use App\Http\Livewire\Comisiones\Index as ComisionesIndex;
+use App\Http\Livewire\Configuraciones\Index as ConfiguracionesIndex;
+use App\Http\Livewire\Usuarios\Index as UsuariosIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,12 @@ Route::middleware([
 
 //Modulo Comisiones
 Route::group(['prefix' => 'comisiones'], function(){
-    Route::get('/', Index::class)->middleware('auth')->name('comisiones');
+    Route::get('/', ComisionesIndex::class)->middleware('auth')->name('comisiones');
     Route::get('editar/{comisionID?}', Create::class)->middleware('auth')->name('comisiones-editar');
     //Route::get('editar/{comision_id?}', Crud::class)->middleware('auth')->name('comisiones-edit');
+});
+
+Route::group(['prefix' => 'siiaa/configuraciones', 'middleware'=>['auth:sanctum', config('jetstream.auth_session'), 'verified']], function(){
+    Route::get('/', ConfiguracionesIndex::class)->name('configuraciones');
+    Route::get('usuarios', UsuariosIndex::class)->name('usuarios');
 });

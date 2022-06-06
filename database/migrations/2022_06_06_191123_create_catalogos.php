@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('catalogos', function (Blueprint $table) {
             $table->id();
             $table->string('clave', 8);
+            $table->string('modelo')->nullable();
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->timestamps();
