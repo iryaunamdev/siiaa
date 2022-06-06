@@ -7,14 +7,12 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    protected $listeners = ['comisionEdit'];
     protected $rules = [
         'titulo'=>'required',
     ];
 
     public $titulo, $contacto, $url_local, $descripcion;
     public $comision, $comision_id;
-    public $editMode = 0;
 
     public function mount($comisionID=null)
     {
@@ -66,11 +64,5 @@ class Create extends Component
         $this->url_local = '';
         $this->descripcion = '';
     }
-
-    public function comisionEdit($cID)
-    {
-        dd($cID);
-    }
-
 
 }

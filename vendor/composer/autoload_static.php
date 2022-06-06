@@ -132,6 +132,7 @@ class ComposerStaticInit6d4bdf73ca53f91b705c2e5fc802e495
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
+            'Laraveles\\Spanish\\' => 18,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
@@ -460,6 +461,10 @@ class ComposerStaticInit6d4bdf73ca53f91b705c2e5fc802e495
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
+        'Laraveles\\Spanish\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laraveles/spanish/src',
+        ),
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
@@ -628,6 +633,10 @@ class ComposerStaticInit6d4bdf73ca53f91b705c2e5fc802e495
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Livewire\\Comisiones\\Create' => __DIR__ . '/../..' . '/app/Http/Livewire/Comisiones/Create.php',
+        'App\\Http\\Livewire\\Comisiones\\Documentos' => __DIR__ . '/../..' . '/app/Http/Livewire/Comisiones/Documentos.php',
+        'App\\Http\\Livewire\\Comisiones\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Comisiones/Index.php',
+        'App\\Http\\Livewire\\Comisiones\\Integrantes' => __DIR__ . '/../..' . '/app/Http/Livewire/Comisiones/Integrantes.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -636,6 +645,9 @@ class ComposerStaticInit6d4bdf73ca53f91b705c2e5fc802e495
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Comision' => __DIR__ . '/../..' . '/app/Models/Comision.php',
+        'App\\Models\\ComisionDocumento' => __DIR__ . '/../..' . '/app/Models/ComisionDocumento.php',
+        'App\\Models\\ComisionIntegrante' => __DIR__ . '/../..' . '/app/Models/ComisionIntegrante.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -3225,6 +3237,8 @@ class ComposerStaticInit6d4bdf73ca53f91b705c2e5fc802e495
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
+        'Laraveles\\Spanish\\Commands\\InstallLang' => __DIR__ . '/..' . '/laraveles/spanish/src/Commands/InstallLang.php',
+        'Laraveles\\Spanish\\SpanishServiceProvider' => __DIR__ . '/..' . '/laraveles/spanish/src/SpanishServiceProvider.php',
         'League\\CommonMark\\CommonMarkConverter' => __DIR__ . '/..' . '/league/commonmark/src/CommonMarkConverter.php',
         'League\\CommonMark\\ConverterInterface' => __DIR__ . '/..' . '/league/commonmark/src/ConverterInterface.php',
         'League\\CommonMark\\Delimiter\\Delimiter' => __DIR__ . '/..' . '/league/commonmark/src/Delimiter/Delimiter.php',

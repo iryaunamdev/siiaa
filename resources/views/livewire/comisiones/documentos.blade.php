@@ -1,6 +1,6 @@
 <div>
     <h5 class="text-lg text-sky-900 border-b mb-8 title-5">Documentos</h5>
-    @if($editMode)
+    @if($this->editMode)
     <form>
         <div class="grid grid-cols-2 gap-4">
             <div class="mb-4 form-group col-span-2">

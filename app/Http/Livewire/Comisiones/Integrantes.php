@@ -31,20 +31,6 @@ class Integrantes extends Component
         return view('livewire.comisiones.integrantes');
     }
 
-    public function editarIntegrante($integranteID)
-    {
-
-        if($integranteID)
-        {
-            $integrante = ComisionIntegrante::findOrFail($integranteID);
-            $this->nombre = $integrante->nombre;
-            $this->puesto = $integrante->puesto;
-            $this->integrante_id = $integrante->id;
-        }
-
-        $this->editMode = true;
-    }
-
     public function store()
     {
         $this->validate();
@@ -56,6 +42,7 @@ class Integrantes extends Component
         ]);
 
         $this->resetInputFields();
+        $this->dispatchBrowserEvent('integrateAdded');
         $this->editMode = false;
     }
 
@@ -64,5 +51,10 @@ class Integrantes extends Component
         $this->nombre = '';
         $this->puesto = '';
         $this->integrante_id = '';
+    }
+
+    public function editarIntegrante($IntegranteID)
+    {
+        $this->editMode = true;
     }
 }

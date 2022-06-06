@@ -49,7 +49,6 @@
                 </div>
             </div>
         </form>
-
         @if ($comision_id)
             @livewire('comisiones.integrantes', ['comision_id' => $comision_id])
         @endif
