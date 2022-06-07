@@ -19,9 +19,11 @@ class Integrantes extends Component
 
     public $nombre, $puesto, $integrante_id;
     public $comision_id;
-    public $integrantes;
+    public $integrantes, $integranteToDelete;
 
     public $editMode = 0;
+
+    public $deleteMode = false;
 
     public $autorizedRoles = [
         'Superadmin',
@@ -50,9 +52,12 @@ class Integrantes extends Component
             ]);
 
             if($this->integrante_id){
-                toast()->success('Integrante actualizado.')->push()->;
+                $this->emit('upIntegrante');
+                toast()->success('Integrante actualizado.')->push();
+
             }else{
-                toast()->success('Integrante agregado.')->push()->;
+                toast()->success('Integrante agregado.')->push();
+                $this->emit('svIntegrante');
             }
 
             $this->resetInputFields();
@@ -65,11 +70,19 @@ class Integrantes extends Component
 
     }
 
-    public function delete($id)
+    public function ConfirmingDeletion(ComisionIntegrante $integrante)
+    {
+        $this->deleteMode =  true;
+        $this->integranteToDelete = $integrante;
+    }
+
+    public function delete()
     {
         if(Auth::user()->hasanyrole($this->autorizedRoles))
         {
-            $integrante = ComisionIntegrante::find($id)->delete();
+            $this->integranteToDelete->delete();
+            $this->deleteMode =  false;
+            toast()->success('El integrante ha sido eliminado.')->push();
         }else{
             return abort(403, 'Usuario no autorizado.');
         }
@@ -79,6 +92,7 @@ class Integrantes extends Component
     {
         $this->nombre = '';
         $this->puesto = '';
+        $this->integrante_id = '';
     }
 
     public function editarIntegrante($IntegranteID)

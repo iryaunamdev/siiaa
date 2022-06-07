@@ -15,9 +15,9 @@ class ConfiguracionCatalogo extends Model
         'clave', 'name', 'active','model', 'active'
     ];
 
-    public function itmes()
+    public function items()
     {
-        return $this->hasMany(ConfiguracionCatalogoItem::class);
+        return $this->hasMany(ConfiguracionCatalogoItem::class, 'catalogo_id', 'id');
     }
 
 }

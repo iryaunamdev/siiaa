@@ -1,5 +1,5 @@
 <div
-    class="fixed top-20 mt-8 ml-8 z-50 p-4 space-y-3 w-full max-w-sm pointer-events-none ltr:right-0 rtl:left-0 toasts-container sm:p-6"
+    class="mx-auto sm:w-3/4 md:w-2/4 fixed bottom-10 right-3 items-center mt-8 ml-8 z-50 p-4 space-y-3 max-w-sm pointer-events-none ltr:right-0 rtl:left-0 toasts-container sm:p-6"
     x-data='ToastComponent($wire)'
     @mouseleave="scheduleRemovalWithOlder()"
 >

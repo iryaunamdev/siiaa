@@ -17,9 +17,10 @@
                         <div class="grid grid-cols-1 gap-3">
                             <div class="form-floating">
                                 <input type="text"
-                                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none"
+                                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none @error('nombre') border-red-600 @enderror"
                                     id="floatingInput1" placeholder="Nombre del integrante" wire:model="nombre">
                                 <label for="floatingInput1" class="text-gray-700">Nombre del integrante</label>
+                                @error('nombre') <p class="text-xs italic text-red-600">Nombre del integrante requerido</p> @enderror
                             </div>
                             <div class="form-floating">
                                 <input type="text"
@@ -46,6 +47,14 @@
 </div>
 @endif
 
+<x-jet-action-message class="mt-2 text-cyan-600 italic" on="upIntegrante">
+    Registro actualizado.
+</x-jet-action-message>
+
+<x-jet-action-message class="mt-2 text-cyan-600 italic" on="svIntegrante">
+    Registro creado.
+</x-jet-action-message>
+
 <table class="table-fixed w-full">
     <tbody>
         @foreach ($integrantes as $index => $integrante)
@@ -58,10 +67,33 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-gray-900 w-20 text-center">
                     @hasanyrole('Superadmin|Administrador')
-                    <button type="button" wire:click.prevent="delete({{ $integrante->id }})"><i class="fa-light fa-trash-can fa-lg text-red-700 hover:text-red-800"></i></button>
+                    <button type="button" wire:click.prevent="ConfirmingDeletion({{ $integrante }})"><i class="fa-light fa-trash-can fa-lg text-red-700 hover:text-red-800"></i></button>
                     @endhasanyrole
                 </td>
         @endforeach
     </tbody>
 </table>
+
+
+
+<!-- Delete Confirmation Modal -->
+<x-jet-confirmation-modal wire:model="deleteMode">
+    <x-slot name="title">
+        Elimiminar Integrante
+    </x-slot>
+
+    <x-slot name="content">
+        Se eliminará permanentemente el registro.
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-secondary-button wire:click="$toggle('deleteMode')" wire:loading.attr="disabled">
+            Cancelar
+        </x-jet-secondary-button>
+
+        <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
+            Eliminar
+        </x-jet-danger-button>
+    </x-slot>
+</x-jet-confirmation-modal>
 </div>

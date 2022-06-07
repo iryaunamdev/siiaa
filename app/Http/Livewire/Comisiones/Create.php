@@ -49,6 +49,7 @@ class Create extends Component
 
             $comision->save();
 
+            $this->emit('updated');
             toast()->success('La comisión se actualizo correctemente.')->push();
 
         }else{
@@ -60,6 +61,9 @@ class Create extends Component
                 ]);
 
             toast()->success('La comisión se creo correctemente.')->push();
+
+            $this->emit('saved');
+            $this->comision_id = $comision->id;
         }
 
     }

@@ -27,9 +27,10 @@
                 <div>
                     <div class="form-floating mb-3">
                         <input type="text"
-                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none"
+                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-bl focus:outline-none @error('titulo') border-red-600 @enderror"
                             id="floatingInput1" placeholder="Nombre de la comisión" wire:model="titulo">
-                        <label for="floatingInput1" class="text-gray-700">Nombre de la comisión</label>
+                        <label for="floatingInput1" class="text-gray-900">Nombre de la comisión</label>
+                        @error('titulo') <p class="text-xs italic text-red-600">Nombre de la comisión requerido</p> @enderror
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text"
@@ -49,6 +50,12 @@
 
                 </div>
             </div>
+            <x-jet-action-message class="mt-2 text-cyan-600 italic" on="updated">
+                Registro actualizado.
+            </x-jet-action-message>
+            <x-jet-action-message class="mt-2 text-cyan-600 italic" on="saved">
+                Registro creado.
+            </x-jet-action-message>
         </form>
         @if ($comision_id)
             @livewire('comisiones.integrantes', ['comision_id' => $comision_id])
