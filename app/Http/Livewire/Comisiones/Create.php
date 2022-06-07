@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Comisiones;
 
 use App\Models\Comision;
 use Livewire\Component;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Create extends Component
 {
+    use WireToast;
+
     protected $rules = [
         'titulo'=>'required',
     ];
@@ -46,6 +49,8 @@ class Create extends Component
 
             $comision->save();
 
+            toast()->success('La comisión se actualizo correctemente.')->push();
+
         }else{
             $comision = Comision::create([
                     'titulo'=>$this->titulo,
@@ -53,6 +58,8 @@ class Create extends Component
                     'url_local'=>$this->url_local,
                     'descripcion'=>$this->descripcion,
                 ]);
+
+            toast()->success('La comisión se creo correctemente.')->push();
         }
 
     }

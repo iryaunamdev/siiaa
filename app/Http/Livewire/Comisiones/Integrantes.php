@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Comisiones;
 use App\Models\ComisionIntegrante;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Integrantes extends Component
 {
+    use WireToast;
     protected $listeners = ['editarIntegrante'];
 
     protected $rules = [
@@ -47,8 +49,15 @@ class Integrantes extends Component
                 'comision_id'=>$this->comision_id,
             ]);
 
+            if($this->integrante_id){
+                toast()->success('Integrante actualizado.')->push()->;
+            }else{
+                toast()->success('Integrante agregado.')->push()->;
+            }
+
             $this->resetInputFields();
             $this->editMode = false;
+
 
         }else{
             return abort(403, 'Usuario no autorizado.');

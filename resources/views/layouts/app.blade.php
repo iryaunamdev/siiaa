@@ -26,13 +26,11 @@
             </div>
         </header>
 
-
         <div class=" flex items-left justify-left bg-slate-100">
             @include('side-menu')
 
             <div class="ml-auto mb-6 sm:w-full lg:w-[70%] xl:w-[75%] 2xl:w-[80%]">
                 <livewire:toasts />
-
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}
