@@ -52,7 +52,7 @@
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->email}}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->name}}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->getRoleNames()}}</td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->active}}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->activegit add}}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
                     </tr>
                     @endforeach
