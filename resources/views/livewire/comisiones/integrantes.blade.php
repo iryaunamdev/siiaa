@@ -67,7 +67,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-gray-900 w-20 text-center">
                     @hasanyrole('Superadmin|Administrador')
-                    <button type="button" wire:click.prevent="ConfirmingDeletion({{ $integrante }})"><i class="fa-light fa-trash-can fa-lg text-red-700 hover:text-red-800"></i></button>
+                    <button type="button" wire:click.prevent="ConfirmingDeletion({{ $integrante }})"><i class="fa-duotone fa-circle-trash fa-lg text-red-600 hover:text-red-800"></i></button>
                     @endhasanyrole
                 </td>
         @endforeach

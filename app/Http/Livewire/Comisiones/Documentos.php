@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Comisiones;
 
 use App\Models\ComisionDocumento;
+use App\Models\ConfiguracionCatalogo;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -18,9 +19,16 @@ class Documentos extends Component
         'file'=>'required',
         'fecha'=>'required|date',
     ];
+
+    public $badge_colors = [
+        'bg-indigo-600',
+        'bg-blue-600',
+        'bg-sky-600',
+        'bg-cyan-600',
+    ];
     public $titulo, $tipo_id, $fecha, $file, $documento_id;
     public $comisiones, $comision_id;
-    public $documentos;
+    public $documentos, $tipo_docs;
 
     public $editMode = 0;
 
@@ -31,6 +39,7 @@ class Documentos extends Component
         if($this->comision_id){
             $this->documentos = ComisionDocumento::where('comision_id', $this->comision_id)->get();
         }
+        $this->tipo_docs = ConfiguracionCatalogo::where('clave', 'COMTDOC')->first()->items;
         return view('livewire.comisiones.documentos');
     }
 

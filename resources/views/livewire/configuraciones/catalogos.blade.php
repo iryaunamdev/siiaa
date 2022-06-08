@@ -10,7 +10,7 @@
         <div class="flex justify-left w-full">
             <div class="block rounded-lg shadow-lg bg-white max-w-sm">
                 <div class="py-3 px-6 border-b border-gray-300">
-                    <div class="flex justify-start">
+                    <div class="flex justify-between">
                         <span>
                             <button type="button" wire:click.prevent="editCatalogo({{$catalogo->id}})" class="text-sky-900 text-lg font-medium text-left">{{ $catalogo->name }}</button>
                         </span>
@@ -28,13 +28,13 @@
                         <tbody>
                         @foreach ($catalogo->items as $item )
                             <tr>
-                                <td class="px-6 py-2 text-medium">
+                                <td class="px-6 py-2 text-light">
                                     <button type="button" wire:click.prevent="editItem({{$item->id}})">
                                         <span class="text-light text-xs">[{{ $item->clave }}]</span> {{ $item->name }}
                                     </button>
                                 </td>
-                                <td class="px-6 py-2 text-medium>
-                                    <button type="button"  wire:click.prevent='confirmDeleteItem({{$item}})' data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar este elemento del catálogo" class="px-4">
+                                <td class="px-6 py-2 text-right">
+                                    <button type="button"  wire:click.prevent='confirmDeleteItem({{$item}})' data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar este elemento del catálogo" class="">
                                         <i class="fa-duotone fa-circle-minus fa-lg text-red-600 hover:text-red-800"></i>
                                     </button>
                                 </td>
