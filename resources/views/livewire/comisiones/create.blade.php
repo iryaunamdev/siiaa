@@ -1,3 +1,6 @@
+@extends('base')
+
+@section('content')
 <div class="py-8 px-6 sm:py-6 sm:py-4 grid grid-cols-2 transition ease-in-out">
     <div class="bg-gray-50 px-4 py-3 sm:px-6 col-span-2 sm:flex sm:flex-row-reverse">
         <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
@@ -68,3 +71,4 @@
         @endif
     </div>
 </div>
+@endsection

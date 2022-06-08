@@ -38,8 +38,8 @@ class Documentos extends Component
 
         if($this->comision_id){
             $this->documentos = ComisionDocumento::where('comision_id', $this->comision_id)->get();
+            $this->tipo_docs = ConfiguracionCatalogo::findOrFail(4)->items;
         }
-        $this->tipo_docs = ConfiguracionCatalogo::where('clave', 'COMTDOC')->first()->items;
         return view('livewire.comisiones.documentos');
     }
 
