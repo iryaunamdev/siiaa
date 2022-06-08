@@ -12,21 +12,19 @@ class Catalogos extends Component
 {
     use WireToast;
 
-    protected $rules = [
-        'name'=>'required',
-        'clave'=>'required|max:8',
-    ];
-
     public $verifiedRoles = [
         'Superadmin',
         'Administrador',
     ];
+
     public $catalogos;
     public $name, $clave, $catalogo_id, $catalogo;
     public $item, $item_id, $item_name, $item_clave;
 
     public $editMode = false;
     public $editItem = false;
+    public $deleteItemModal = false, $deleteCatalogoModal=false;
+
 
 
     public function render()
@@ -40,26 +38,67 @@ class Catalogos extends Component
 
     }
 
-    public function store()
+    public function editCatalogo($id = null)
     {
-        $this->validate();
+        if($id){
+            $catalogo = ConfiguracionCatalogo::findOrFail($id);
+            $this->name = $catalogo->name;
+            $this->clave = $catalogo->clave;
+            $this->catalogo = $catalogo;
+        }
+        $this->editMode=true;
 
-        $catalogo = ConfiguracionCatalogo::updateOrCreate(['id' => $this->catalogo_id],[
-            'name'=>$this->name,
-            'clave'=>$this->clave,
+    }
+
+    public function storeCatalogo()
+    {
+        $this->validate([
+            'name'=>'required',
+            'clave'=>'required|max:8',
         ]);
 
-        $this->resetInputs();
+        if($this->catalogo){
+            $catalogo = ConfiguracionCatalogo::findOrFail($this->catalogo->id);
+            $catalogo->name = $this->name;
+            $catalogo->clave = $this->clave;
+            $catalogo->save();
+        }else{
+            $catalogo = ConfiguracionCatalogo::Create([
+                'name' => $this->name,
+                'clave' => $this->clave,
+            ]);
+        }
+
+        $this->resetCatalogoInputs();
         $this->emit('saved');
         toast()->success('El catalogo se actualizo correctamente.')->push();
         $this->editMode=false;
     }
 
-    public function resetInputs()
+    public function resetCatalogoInputs()
     {
         $this->name = '';
         $this->clave = '';
         $this->catalogo_id = '';
+        $this->catalogo = "";
+    }
+
+    public function confirmDeleteCatalogo(ConfiguracionCatalogo $catalogo)
+    {
+        $this->editMode = false;
+        $this->deleteCatalogoModal = true;
+        $this->catalogo = $catalogo;
+    }
+
+    public function deleteCatalogo()
+    {
+        ConfiguracionCatalogoItem::where('catalogo_id', $this->catalogo->id)->delete();
+        $this->catalogo->delete();
+
+        toast()->success('El catálogo y sus elementos fueron eliminados.')->push();
+        $this->resetCatalogoInputs();
+        $this->deleteCatalogoModal=false;
+        $this->emit('catalogoDeletd');
     }
 
     public function addItem($catalgoID)
@@ -73,6 +112,7 @@ class Catalogos extends Component
     {
         $this->validate([
             'item_name' => 'required',
+            'item_clave' => 'required|max:8'
         ]);
 
         $item = ConfiguracionCatalogoItem::updateOrCreate(['id'=>$this->item_id],[
@@ -82,9 +122,36 @@ class Catalogos extends Component
         ] );
 
         $this->resetItemInputs();
-        toast()->success('Se actualizaron los elementos del catalogo '.$this->catalogo->clave)->push();
+        toast()->success('Se actualizaron los elementos del catalogo ')->push();
         $this->editItem = false;
+        $this->emit('itemStored');
 
+    }
+
+    public function editItem($id)
+    {
+        $item = ConfiguracionCatalogoItem::findOrFail($id);
+        $this->item_name = $item->name;
+        $this->item_clave = $item->clave;
+        $this->item_id = $item->id;
+        $this->catalogo_id = $item->catalogo_id;
+        $this->item = $item;
+        $this->editItem=true;
+
+    }
+
+    public function confirmDeleteItem(ConfiguracionCatalogoItem $item)
+    {
+        $this->deleteItemModal = true;
+        $this->item = $item;
+    }
+
+    public function deleteItem()
+    {
+        $this->item->delete();
+        $this->deleteItemModal = false;
+        toast()->success('Se eliminó el elemento del catálogo')->push();
+        $this->emit('deletedItem');
     }
 
     public function resetItemInputs()
@@ -92,5 +159,6 @@ class Catalogos extends Component
         $this->item_name = '';
         $this->item_clave = '';
         $this->item_id = '';
+        $this->catalogo_id = '';
     }
 }
