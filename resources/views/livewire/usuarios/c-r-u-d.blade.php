@@ -1,13 +1,13 @@
 @extends('base')
 
 @section('content')
-<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div class="mt-8 text-2xl text-slate-700">
-        Usuarios y permisos
+<div class="p-6 bg-white border-b border-gray-200 grid grid-cols-2 justify-between">
+    <div class="ml-8 mt-8 text-2xl text-slate-700">
+        Usuarios
     </div>
 
-    <div class="mt-6 text-gray-500">
-
+    <div class="mt-8 mr-6 text-right">
+        <button type="button" wire:click.prevent="editarUsuario()" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase hover:bg-sky-700 focus:bg-sky-700 focus:outline-none focus:ring-0 active:bg-sky-800 transition duration-150 ease-in-out rounded-r rounded-l"><i class="fa-duotone fa-circle-plus fa-lg"></i> Usuario</button>
     </div>
 </div>
 
@@ -32,10 +32,10 @@
                 <tbody class="bg-white">
                     @foreach ($usuarios as $usuario )
                     <tr class="border-b">
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-2 whitespace-nowrap">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ $usuario->profile_photo_url }}" alt="{{ $usuario->name }}" />
+                                    <img class="h-11 w-11 rounded-full object-cover" src="{{ $usuario->profile_photo_url }}" alt="{{ $usuario->name }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
@@ -49,10 +49,12 @@
                                 </span>
                             @endif
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->email}}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <button type="button" wire:click.prevent="editarUsuario({{$usuario}})">{{$usuario->email}}</button>
+                        </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->name}}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->getRoleNames()}}</td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$usuario->activegit add}}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
                     </tr>
                     @endforeach
@@ -61,5 +63,12 @@
         </div>
     </div>
 </div>
+
+@if($editMode)
+    @include('livewire.usuarios.show')
+@endif
+
+
 @endsection
+
 

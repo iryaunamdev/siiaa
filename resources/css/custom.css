@@ -1,12 +1,24 @@
 
 .side-link-1 {
-    @apply relative px-4 py-3 flex items-center space-x-4 rounded-xl
+    @apply relative px-4 py-3 flex items-center space-x-4 rounded-xl ease-in-out
+}
+
+.side-link-2 {
+    @apply flex items-center text-xs py-4 pl-12 pr-6 overflow-hidden text-ellipsis whitespace-nowrap rounded
 }
 
 .side-link-1-active {
     @apply text-white bg-gradient-to-r from-sky-600 to-cyan-400
 }
 
+.side-link-2-active {
+    @apply text-sky-600
+}
+
 .side-link-1-off {
     @apply text-gray-600 hover:bg-gradient-to-r from-white to-slate-200
+}
+
+.side-link-2-off {
+    @apply text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition duration-300
 }
