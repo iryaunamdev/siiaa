@@ -61,8 +61,8 @@
             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-sky-100">
                 <td class="px-6 py-4 whitespace-nowrap text-gray-900 text-light w-6">{{ $index + 1 }}</td>                <td class="px-6 py-4 whitespace-nowrap text-gray-900">
                     <button wire:click.prevent="$emit('editarIntegrante', {{ $integrante->id }})">
-                        <span class="font-bold">{{ $integrante->nombre }}</span><br>
-                        <span class="font-light">{{ $integrante->puesto }}</span>
+                        <p class="font-bold">{{ $integrante->nombre }}</p>
+                        <p class="font-light">{{ $integrante->puesto }}</p>
                     </button>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-gray-900 w-20 text-center">

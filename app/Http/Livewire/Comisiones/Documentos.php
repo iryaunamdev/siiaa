@@ -21,10 +21,12 @@ class Documentos extends Component
     ];
 
     public $badge_colors = [
+        'bg-slate-700',
         'bg-indigo-600',
         'bg-blue-600',
         'bg-sky-600',
         'bg-cyan-600',
+        'bg-slate-500',
     ];
     public $titulo, $tipo_id, $fecha, $file, $documento_id;
     public $comisiones, $comision_id;

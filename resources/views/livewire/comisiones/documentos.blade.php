@@ -1,5 +1,5 @@
 <div>
-    <div class="hidden bg-indigo-600 bg-sky-600 bg-cyan-600 bg-blue-600"></div>
+    <div class="hidden bg-indigo-600 bg-sky-600 bg-cyan-600 bg-blue-600 bg-slate-500 bg-slate-700"></div>
     <h5 class="text-lg text-sky-900 border-b mb-8 title-5">Documentos</h5>
     @if($this->editMode)
     <!-- Modal window -->
@@ -68,22 +68,22 @@
     @endif
 
     @if(count($documentos))
-    <table class="table-fixed w-full">
+    <table class="table w-full">
         <thead class="border-b bg-white text-left">
             <tr>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-1/6">Fecha</th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-3/6">Documento</th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-1/6">Tipo Doc.</th>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">Documento</th>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-1/12">Tipo Doc.</th>
                 <th class="w-1/12"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($documentos as $documento )
-            <tr class="bg-white border-b">
+            @foreach ($documentos->sortBy('fecha') as $documento )
+            <tr class="bg-white border-b overflow-auto">
                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">{{$documento->fecha->format('d/m/Y')}}</td>
-                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900"><a href="{{Storage::url('comisiones/'.$documento->filename)}}">{{$documento->titulo}}</a></td>
+                <td class="px-6 py-2 text-sm font-medium text-gray-900 overflow-auto "><a href="{{Storage::url('comisiones/'.$documento->filename)}}">{{$documento->titulo}}</a></td>
                 <td class="text-xs text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold {{ $badge_colors[$documento->tipo_id] }} text-white rounded-full">{{$tipo_docs[$documento->tipo_id]->name}}</span>
+                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold {{ $badge_colors[$documento->tipo_id - 1 ] }} text-white rounded-full">{{$tipo_docs[$documento->tipo_id -1]->name}}</span>
 
                 </td>
                 <td class="px-6 py-2 whitespace-nowrap">
