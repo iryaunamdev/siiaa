@@ -73,26 +73,23 @@
             <tr>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-1/6">Fecha</th>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">Documento</th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-1/12">Tipo Doc.</th>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-3/12">Tipo Doc.</th>
                 <th class="w-1/12"></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($documentos->sortBy('fecha') as $documento )
-            <tr class="bg-white border-b overflow-auto">
-                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">{{$documento->fecha->format('d/m/Y')}}</td>
-                <td class="px-6 py-2 text-sm font-medium text-gray-900 overflow-auto "><a href="{{Storage::url('comisiones/'.$documento->filename)}}">{{$documento->titulo}}</a></td>
-                <td class="text-xs text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+            <tr class="bg-white border-b overflow-auto text-sm font-light">
+                <td class="px-3 py-2">{{$documento->fecha->format('d/m/Y')}}</td>
+                <td class="px-3 py-2"><a href="{{Storage::url('comisiones/'.$documento->filename)}}">{{$documento->titulo}}</a></td>
+                <td class="px-3 py-2 justify-between">
                     <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold {{ $badge_colors[$documento->tipo_id - 1 ] }} text-white rounded-full">{{$tipo_docs[$documento->tipo_id -1]->name}}</span>
-
                 </td>
-                <td class="px-6 py-2 whitespace-nowrap">
-                    <button><i class="fa-duotone fa-circle-trash fa-lg text-red-600 hover:text-red-800"></i></button>
-                </td>
+                <td class="text-right"><button><i class="fa-duotone fa-circle-trash fa-lg text-red-600 hover:text-red-800"></i></button></td>
             </tr>
             @endforeach
         </tbody>
     </table>
     @endif
-    <p class="text-xs text-gray-400 italic">{{ count($documentos)}} documentos encontrados.</p>
+    <p class="text-xs text-right text-gray-400 italic">{{ count($documentos)}} documentos encontrados.</p>
 </div>

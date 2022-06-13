@@ -55,17 +55,18 @@
     Registro creado.
 </x-jet-action-message>
 
-<table class="table-fixed w-full">
+<table class="table w-full text-left">
     <tbody>
         @foreach ($integrantes as $index => $integrante)
-            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-sky-100">
-                <td class="px-6 py-4 whitespace-nowrap text-gray-900 text-light w-6">{{ $index + 1 }}</td>                <td class="px-6 py-4 whitespace-nowrap text-gray-900">
-                    <button wire:click.prevent="$emit('editarIntegrante', {{ $integrante->id }})">
-                        <p class="font-bold">{{ $integrante->nombre }}</p>
-                        <p class="font-light">{{ $integrante->puesto }}</p>
+            <tr class="bg-white border-b text-sm text-light text-left text-gray-900">
+                <td class="px-3 py-2 whitespace-nowrap">{{ $index + 1 }}</td>
+                <td class="px-3 py-2">
+                    <button wire:click.prevent="$emit('editarIntegrante', {{ $integrante->id }})" class="w-full text-left">
+                        <span class="font-bold">{{ $integrante->nombre }}</span><br>
+                        <span>{{ $integrante->puesto }}</span>
                     </button>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-gray-900 w-20 text-center">
+                <td class="px-3 py-2 whitespace-nowrap text-gray-900 w-20 text-center">
                     @hasanyrole('Superadmin|Administrador')
                     <button type="button" wire:click.prevent="ConfirmingDeletion({{ $integrante }})"><i class="fa-duotone fa-circle-trash fa-lg text-red-600 hover:text-red-800"></i></button>
                     @endhasanyrole
