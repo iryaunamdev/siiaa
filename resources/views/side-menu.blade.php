@@ -8,12 +8,33 @@
             --}}
         </div>
 
-        <ul class="relative space-y-2 tracking-wide mt-8 pt-8" id="sideMenu">
+        <ul class="relative space-y-2 border-t tracking-wide mt-8 pt-8" id="sideMenu">
             <li>
                 <a href="{{route('dashboard')}}" aria-label="dashboard" class="side-link-1 {{ (request()->is('dashboard')) ? 'side-link-1-active' : 'side-link-1-off' }}">
                     <i class="fa-duotone fa-grid-2 fa-lg"></i>
                     <span class="-mr-1 font-medium">Dashboard</span>
                 </a>
+            </li>
+        </ul>
+
+        <ul class="relative space-y-2 border-t tracking-wide mt-4 pt-4" id="sideMenu">
+            <li>
+                <a
+                class="side-link-1 {{ (request()->is('siiaa/configuraciones/usuarios*')) ? 'side-link-1-active' : 'side-link-1-off' }}" data-mdb-ripple="true" data-mdb-ripple-color="dark" data-bs-toggle="collapse" data-bs-target="#subMenu-1" aria-expanded="true" aria-controls="subMenu-1">
+                    <i class="fa-duotone fa-file-circle-check fa-lg"></i>
+                    <span class="group-hover:text-gray-700">Solicitudes</span>
+                </a>
+                <ul class="relative accordion-collapse collapse" id="subMenu-1" aria-labelledby="subMenu-1">
+                    <li class="relative">
+                      <a href="{{ route('usuarios')}}" class="side-link-2 {{request()->is('siiaa/configuraciones/usuarios')? 'side-link-2-active' : 'side-link-2-off'}}" data-mdb-ripple="true" data-mdb-ripple-color="dark">Ausencias</a>
+                    </li>
+                    <li class="relative">
+                      <a href="{{route('usuarios-permisos')}}" class="side-link-2 {{request()->is('siiaa/configuraciones/usuarios/permisos')? 'side-link-2-active' : 'side-link-2-off'}}" data-mdb-ripple="true" data-mdb-ripple-color="dark">Recursos</a>
+                    </li>
+                    <li class="relative">
+                        <a href="{{route('usuarios-permisos')}}" class="side-link-2 {{request()->is('siiaa/configuraciones/usuarios/permisos')? 'side-link-2-active' : 'side-link-2-off'}}" data-mdb-ripple="true" data-mdb-ripple-color="dark">Visitantes</a>
+                      </li>
+                </ul>
             </li>
             <li>
                 <a href="{{route('comisiones')}}" class="side-link-1 {{ (request()->is('comisiones*')) ? 'side-link-1-active' : 'side-link-1-off' }}">
@@ -24,14 +45,14 @@
         </ul>
 
         @hasanyrole('Superadmin|Administrador')
-        <ul class="space-y-2 tracking-wider mt-8 pt-4 border-t">
+        <ul class="space-y-2 tracking-wider mt-4 pt-4 border-t">
             <li>
                 <a
                 class="side-link-1 {{ (request()->is('siiaa/configuraciones/usuarios*')) ? 'side-link-1-active' : 'side-link-1-off' }}" data-mdb-ripple="true" data-mdb-ripple-color="dark" data-bs-toggle="collapse" data-bs-target="#subMenu-1" aria-expanded="true" aria-controls="subMenu-1">
                     <i class="fa-duotone fa-user-gear fa-lg"></i>
                     <span class="group-hover:text-gray-700">Usuarios y permisos</span>
                 </a>
-                <ul class="relative accordion-collapse" id="subMenu-1" aria-labelledby="subMenu-1">
+                <ul class="relative accordion-collapse collapse" id="subMenu-1" aria-labelledby="subMenu-1">
                     <li class="relative">
                       <a href="{{ route('usuarios')}}" class="side-link-2 {{request()->is('siiaa/configuraciones/usuarios')? 'side-link-2-active' : 'side-link-2-off'}}" data-mdb-ripple="true" data-mdb-ripple-color="dark">Usuarios</a>
                     </li>

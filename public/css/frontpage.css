@@ -1,0 +1,11 @@
+body, html {
+}
+
+.bg {
+    background-image: url('../img/nebulosa_bg.jpg');
+
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
