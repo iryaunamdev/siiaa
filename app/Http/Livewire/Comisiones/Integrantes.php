@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Comisiones;
 
-use App\Models\ComisionIntegrante;
+use App\Models\Comisiones\Integrante as ComisionesIntegrante;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Usernotnull\Toast\Concerns\WireToast;
@@ -34,7 +34,8 @@ class Integrantes extends Component
     {
         if($this->comision_id)
         {
-            $this->integrantes = ComisionIntegrante::where('comision_id', $this->comision_id)->get();
+            $this->integrantes = ComisionesIntegrante::where('comision_id', $this->comision_id)->get();
+
         }
         return view('livewire.comisiones.integrantes');
     }
@@ -45,7 +46,7 @@ class Integrantes extends Component
         {
             $this->validate();
 
-            $integrante = ComisionIntegrante::updateOrCreate(['id'=>$this->integrante_id],[
+            $integrante = ComisionesIntegrante::updateOrCreate(['id'=>$this->integrante_id],[
                 'nombre'=>$this->nombre,
                 'puesto'=>$this->puesto,
                 'comision_id'=>$this->comision_id,
@@ -70,7 +71,7 @@ class Integrantes extends Component
 
     }
 
-    public function ConfirmingDeletion(ComisionIntegrante $integrante)
+    public function ConfirmingDeletion(ComisionesIntegrante $integrante)
     {
         $this->deleteMode =  true;
         $this->integranteToDelete = $integrante;
@@ -98,7 +99,7 @@ class Integrantes extends Component
     public function editarIntegrante($IntegranteID)
     {
         if($IntegranteID){
-            $integrante = ComisionIntegrante::findOrFail($IntegranteID);
+            $integrante = ComisionesIntegrante::findOrFail($IntegranteID);
             $this->nombre = $integrante->nombre;
             $this->puesto = $integrante->puesto;
             $this->integrante_id = $integrante->id;

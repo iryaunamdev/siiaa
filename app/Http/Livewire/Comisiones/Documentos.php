@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Comisiones;
 
-use App\Models\ComisionDocumento;
-use App\Models\ConfiguracionCatalogo;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\Comisiones\Documento as ComisionesDocumento;
+use App\Models\Configuracion\Catalogo;
 
 class Documentos extends Component
 {
@@ -39,8 +39,8 @@ class Documentos extends Component
     {
 
         if($this->comision_id){
-            $this->documentos = ComisionDocumento::where('comision_id', $this->comision_id)->get();
-            $this->tipo_docs = ConfiguracionCatalogo::findOrFail(1)->items;
+            $this->documentos = ComisionesDocumento::where('comision_id', $this->comision_id)->get();
+            $this->tipo_docs = Catalogo::findOrFail(1)->items;
         }
         return view('livewire.comisiones.documentos');
     }
@@ -57,7 +57,7 @@ class Documentos extends Component
 
         $this->file->storeAs('comisiones', $filenameTXT, 'public');
 
-        ComisionDocumento::create([
+        ComisionesDocumento::create([
             'titulo' => $this->titulo,
             'tipo_id'=> $this->tipo_id,
             'comision_id'=>$this->comision_id,

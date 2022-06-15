@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Comisiones;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
-class ComisionIntegrante extends Model
+
+class Integrante extends Model
 {
     use HasFactory;
+    use LogsActivity;
+    use Loggable;
 
     protected $table = 'comisiones_integrantes';
 
@@ -24,4 +30,9 @@ class ComisionIntegrante extends Model
         return $this->belongsTo(Comision::class);
     }
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly(['comision_id', 'nombre', 'puesto']);
+    }
 }

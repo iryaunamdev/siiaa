@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Configuraciones;
 
-use App\Models\ConfiguracionCatalogo;
-use App\Models\ConfiguracionCatalogoItem;
+use App\Models\Configuracion\Catalogo;
+use App\Models\Configuracion\CatalogoItem;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Usernotnull\Toast\Concerns\WireToast;
@@ -30,7 +30,7 @@ class Catalogos extends Component
     public function render()
     {
         if(Auth::user()->hasanyrole($this->verifiedRoles)){
-            $this->catalogos = ConfiguracionCatalogo::all();
+            $this->catalogos = Catalogo::all();
             return view('livewire.configuraciones.catalogos');
         }else{
             return abort('403', 'Usuario no autorizado');
@@ -41,7 +41,7 @@ class Catalogos extends Component
     public function editCatalogo($id = null)
     {
         if($id){
-            $catalogo = ConfiguracionCatalogo::findOrFail($id);
+            $catalogo = Catalogo::findOrFail($id);
             $this->name = $catalogo->name;
             $this->clave = $catalogo->clave;
             $this->catalogo = $catalogo;
@@ -58,12 +58,12 @@ class Catalogos extends Component
         ]);
 
         if($this->catalogo){
-            $catalogo = ConfiguracionCatalogo::findOrFail($this->catalogo->id);
+            $catalogo = Catalogo::findOrFail($this->catalogo->id);
             $catalogo->name = $this->name;
             $catalogo->clave = $this->clave;
             $catalogo->save();
         }else{
-            $catalogo = ConfiguracionCatalogo::Create([
+            $catalogo = Catalogo::Create([
                 'name' => $this->name,
                 'clave' => $this->clave,
             ]);
@@ -83,7 +83,7 @@ class Catalogos extends Component
         $this->catalogo = "";
     }
 
-    public function confirmDeleteCatalogo(ConfiguracionCatalogo $catalogo)
+    public function confirmDeleteCatalogo(Catalogo $catalogo)
     {
         $this->editMode = false;
         $this->deleteCatalogoModal = true;
@@ -92,7 +92,7 @@ class Catalogos extends Component
 
     public function deleteCatalogo()
     {
-        ConfiguracionCatalogoItem::where('catalogo_id', $this->catalogo->id)->delete();
+        CatalogoItem::where('catalogo_id', $this->catalogo->id)->delete();
         $this->catalogo->delete();
 
         toast()->success('El catálogo y sus elementos fueron eliminados.')->push();
@@ -105,7 +105,7 @@ class Catalogos extends Component
     {
         $this->editItem = true;
         $this->catalogo_id = $catalgoID;
-        $this->catalogo = ConfiguracionCatalogo::findOrfail($this->catalogo_id);
+        $this->catalogo = Catalogo::findOrfail($this->catalogo_id);
     }
 
     public function storeItem()
@@ -115,7 +115,7 @@ class Catalogos extends Component
             'item_clave' => 'required|max:8'
         ]);
 
-        $item = ConfiguracionCatalogoItem::updateOrCreate(['id'=>$this->item_id],[
+        $item = CatalogoItem::updateOrCreate(['id'=>$this->item_id],[
             'name'=>$this->item_name,
             'clave'=>$this->item_clave,
             'catalogo_id'=>$this->catalogo_id,
@@ -130,7 +130,7 @@ class Catalogos extends Component
 
     public function editItem($id)
     {
-        $item = ConfiguracionCatalogoItem::findOrFail($id);
+        $item = CatalogoItem::findOrFail($id);
         $this->item_name = $item->name;
         $this->item_clave = $item->clave;
         $this->item_id = $item->id;
@@ -140,7 +140,7 @@ class Catalogos extends Component
 
     }
 
-    public function confirmDeleteItem(ConfiguracionCatalogoItem $item)
+    public function confirmDeleteItem(CatalogoItem $item)
     {
         $this->deleteItemModal = true;
         $this->item = $item;
