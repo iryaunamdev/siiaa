@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
             $table->integer('seguro_id')->nullable();
-            $table->texto('info_adicional')->nullable();
+            $table->text('info_adicional')->nullable();
             $table->timestamps();
         });
     }
