@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Configuraciones;
 
 use App\Models\Configuracion\Catalogo;
-use App\Models\Configuracion\CatalogoItem;
+use App\Models\Configuracion\CatalogoItems;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Usernotnull\Toast\Concerns\WireToast;
@@ -92,7 +92,7 @@ class Catalogos extends Component
 
     public function deleteCatalogo()
     {
-        CatalogoItem::where('catalogo_id', $this->catalogo->id)->delete();
+        CatalogoItems::where('catalogo_id', $this->catalogo->id)->delete();
         $this->catalogo->delete();
 
         toast()->success('El catálogo y sus elementos fueron eliminados.')->push();
@@ -115,7 +115,7 @@ class Catalogos extends Component
             'item_clave' => 'required|max:8'
         ]);
 
-        $item = CatalogoItem::updateOrCreate(['id'=>$this->item_id],[
+        $item = CatalogoItems::updateOrCreate(['id'=>$this->item_id],[
             'name'=>$this->item_name,
             'clave'=>$this->item_clave,
             'catalogo_id'=>$this->catalogo_id,
@@ -130,7 +130,7 @@ class Catalogos extends Component
 
     public function editItem($id)
     {
-        $item = CatalogoItem::findOrFail($id);
+        $item = CatalogoItems::findOrFail($id);
         $this->item_name = $item->name;
         $this->item_clave = $item->clave;
         $this->item_id = $item->id;
@@ -140,7 +140,7 @@ class Catalogos extends Component
 
     }
 
-    public function confirmDeleteItem(CatalogoItem $item)
+    public function confirmDeleteItem(CatalogoItems $item)
     {
         $this->deleteItemModal = true;
         $this->item = $item;

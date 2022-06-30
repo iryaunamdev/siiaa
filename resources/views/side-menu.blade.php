@@ -8,7 +8,7 @@
             --}}
         </div>
 
-        <ul class="relative space-y-2 border-t tracking-wide mt-8 pt-8" id="sideMenu">
+        <ul class="relative space-y-2 border-t tracking-wide mt-8 pt-8">
             <li>
                 <a href="{{route('dashboard')}}" aria-label="dashboard" class="side-link-1 {{ (request()->is('dashboard')) ? 'side-link-1-active' : 'side-link-1-off' }}">
                     <i class="fa-duotone fa-grid-2 fa-lg"></i>
@@ -17,7 +17,21 @@
             </li>
         </ul>
 
-        <ul class="relative space-y-2 border-t tracking-wide mt-4 pt-4" id="sideMenu">
+        <ul class="relative space-y-2 border-t tracking-wide mt-4 pt-4">
+            <li>
+                <a href="{{ route('personas-list') }}" class="side-link-1 {{ (request()->is('siiaa/personal*')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-users fa-lg"></i>
+                    <span class="group-hover:text-gray-700">Personal IRyA</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="side-link-1 {{ (request()->is('personal*')) ? 'side-link-1-active' : 'side-link-1-off' }}">
+                    <i class="fa-duotone fa-users fa-lg"></i>
+                    <span class="group-hover:text-gray-700">Estudiantes IRyA</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="relative space-y-2 border-t tracking-wide mt-4 pt-4">
             <li>
                 <a
                 class="side-link-1 {{ (request()->is('siiaa/configuraciones/usuarios*')) ? 'side-link-1-active' : 'side-link-1-off' }}" data-mdb-ripple="true" data-mdb-ripple-color="dark" data-bs-toggle="collapse" data-bs-target="#subMenu-1" aria-expanded="true" aria-controls="subMenu-1">

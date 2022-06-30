@@ -23,7 +23,7 @@
 
 
                 </div>
-                <div class="max-h-30 overflow-y-auto">
+                <div class="">
                   <table class="w-full">
                         <tbody>
                         @foreach ($catalogo->items as $item )

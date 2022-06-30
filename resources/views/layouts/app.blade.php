@@ -20,6 +20,7 @@
         <script src="{{ mix('js/custom.js') }}" defer></script>
     </head>
     <body class="h-screen overflow-auto">
+        <x-jet-banner />
         <header class="sticky top-0 z-50">
             <div class="w-full">
                 @livewire('navigation-menu')

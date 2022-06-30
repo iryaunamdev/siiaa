@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Configuracion\CatalogoItems;
+use App\Models\persona\Ingresos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
@@ -36,6 +37,11 @@ class Persona extends Model
     public function sexo()
     {
         return $this->belongsTo(CatalogoItems::class, 'sexo_id');
+    }
+
+    public function ingreso()
+    {
+        return $this->hasOne(Ingresos::class, 'persona_id', 'id');
     }
 
     public function getActivitylogOptions(): LogOptions
